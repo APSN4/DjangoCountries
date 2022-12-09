@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Список стран</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'style_list_countries.css' %}">
+</head>
+<body>
+<header class="site-header">
+      <div class="wrapper site-header__wrapper">
+        <nav class="nav">
+          <div class="nav__wrapper">
+            {% for i in alphabet %}
+				<a class="url_symbol" href="/countries-list/alphabet/{{ forloop.counter0 }}">{{ i }}</a>
+			{% endfor %}
+          </div>
+        </nav>
+      </div>
+    </header>
+<header class="header">
+        <h1 class="h1_header">find your country.</h1>
+</header>
+<div class="hello_msg">
+	<div>
+		<span><a class="span_lang" href="/countries-list/language/"></a></span>
+	</div>
+	<div>
+		----
+	</div>
+	<div>
+		{% for i in page_obj %}
+			<a href="/countries-list/{{ i.id }}">{{ i.country }}</a>
+		{% endfor %}
+	</div>
+	<div>
+		<nav>
+			<ul>
+				{% for p in page_obj.paginator.page_range %}
+				<a>
+					<a href="?page={{ p }}">{{ p }}</a>
+				</a>
+				{% endfor %}
+			</ul>
+		</nav>
+	</div>
+</div>
+</body>
+</html>
